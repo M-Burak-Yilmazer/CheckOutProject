@@ -17,7 +17,7 @@ Project aims to create a real checkout page of e-commerce website.
    - When I change any combination of product chart(plus, minus, remove etc.), I want to see the new calculation of chart's prices in concerned fields.
 
 ## MyDemo
-<a href="https://checkout-project-mathias.netlify.app/">Live</a>
+<a href="https://m-burak-yilmazer.github.io/CheckOutProject/">It is Live Here</a>
 
 
 

@@ -13,6 +13,7 @@ document.querySelector(".nav").addEventListener("click", (e) => {
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
+      color: "#fff",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -36,6 +37,7 @@ document.querySelector(".nav").addEventListener("click", (e) => {
           title: "Deleted!",
           text: "Your file has been deleted.",
           icon: "success",
+          color: "#fff",
         });
       }
     });

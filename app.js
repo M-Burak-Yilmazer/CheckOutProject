@@ -1,5 +1,5 @@
 window.addEventListener("load", (event) => {
-  calculatePrices()
+  calculatePrices();
 });
 
 document.querySelector(".nav").addEventListener("click", (e) => {
@@ -169,6 +169,13 @@ document
       //   );
 
       //   result ? e.target.closest(".main__product").remove() : null;
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "Other Element Clicked!",
+        color: "#9DE0F6",
+      });
     }
   });
 
@@ -177,6 +184,6 @@ document.querySelector(".main__order-btn").addEventListener("click", (e) => {
     title: "Congratulations!",
     text: "You Finished Your Order With Selected Products!",
     icon: "success",
-    color:"#fff"
+    color: "#fff",
   });
 });

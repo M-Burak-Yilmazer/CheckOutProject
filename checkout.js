@@ -37,7 +37,7 @@ let calculatePrices = () => {
   document.querySelector("div#cart-shipping .dollar").textContent = shippingPrice;
 
   const totalPrice= (+(sumPrice.textContent) +  +(taxPrice)+ +(shippingPrice)).toFixed(2)
-  document.querySelector("div#cart-total ")
+  document.querySelector("div#cart-total .dollar").textContent = totalPrice
   console.log(totalPrice)
 
   return sumPrice.textContent;

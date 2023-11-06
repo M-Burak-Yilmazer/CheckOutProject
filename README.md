@@ -7,12 +7,6 @@
 Project aims to create a real checkout page of e-commerce website.
 
 
-   
-## Problem Statement
-
-- Create a checkout page following the design and make the calculation of cart dynamically with using of DOM and Event in JS.
-
-![Checkout](checkout.gif)
 
 
 -  User story;
@@ -22,11 +16,9 @@ Project aims to create a real checkout page of e-commerce website.
    - When I click remove button on product's row or I decrease the quantity to 0, I can delete a product in the cart.
    - When I change any combination of product chart(plus, minus, remove etc.), I want to see the new calculation of chart's prices in concerned fields.
 
-## Demo
+## MyDemo
 <a href="https://checkout-project-mathias.netlify.app/">Live</a>
-## Resources
 
-- [Images](./img/)
 
 
 

@@ -116,9 +116,17 @@ document
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             e.target.closest(".main__product").remove();
-            document.querySelector(".nav__list--text span").textContent = `(${
-              document.querySelectorAll(".main__product").length
-            } products)`;
+            if (
+              document.querySelector(".nav__list--text span").textContent !=
+              "(1 products)"
+            ) {
+              document.querySelector(".nav__list--text span").textContent = `(${
+                document.querySelectorAll(".main__product").length
+              } products)`;
+            } else {
+              document.querySelector(".nav__list--text span").textContent =
+                "(You have no product in your Cart.) ";
+            }
             calculatePrices();
 
             Swal.fire("Removed!", "", "success");
@@ -160,9 +168,17 @@ document
         if (result.isConfirmed) {
           Swal.fire("Removed!", "", "success");
           e.target.closest(".main__product").remove();
-          document.querySelector(".nav__list--text span").textContent = `(${
-            document.querySelectorAll(".main__product").length
-          } products)`;
+          if (
+            document.querySelector(".nav__list--text span").textContent !=
+            "(1 products)"
+          ) {
+            document.querySelector(".nav__list--text span").textContent = `(${
+              document.querySelectorAll(".main__product").length
+            } products)`;
+          } else {
+            document.querySelector(".nav__list--text span").textContent =
+              "(You have no product in your Cart.) ";
+          }
           calculatePrices();
         } else if (result.isDenied) {
           Swal.fire("You don't remove it", "", "info");

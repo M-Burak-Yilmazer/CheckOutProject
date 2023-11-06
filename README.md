@@ -6,13 +6,6 @@
 ## Description
 Project aims to create a real checkout page of e-commerce website.
 
-## Learning Outcomes
-
-At the end of the this project, students will be able to;
-
-- analyze a problem, create e-commerce website page.
-
-- demonstrate their knowledge of algorithmic design principles for dynamic calculation of product's cart.
 
    
 ## Problem Statement
@@ -30,7 +23,7 @@ At the end of the this project, students will be able to;
    - When I change any combination of product chart(plus, minus, remove etc.), I want to see the new calculation of chart's prices in concerned fields.
 
 ## Demo
-<a href="https://anthony-checkout-apps.vercel.app/">Live</a>
+<a href="https://checkout-project-mathias.netlify.app/">Live</a>
 ## Resources
 
 - [Images](./img/)
@@ -40,4 +33,3 @@ At the end of the this project, students will be able to;
  
 
 
-<center> ⌛ Happy Coding  ✍ </center>

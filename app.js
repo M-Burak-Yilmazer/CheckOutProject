@@ -116,6 +116,9 @@ document
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             e.target.closest(".main__product").remove();
+            document.querySelector(".nav__list--text span").textContent = `(${
+              document.querySelectorAll(".main__product").length
+            } products)`;
             calculatePrices();
 
             Swal.fire("Removed!", "", "success");
@@ -157,6 +160,9 @@ document
         if (result.isConfirmed) {
           Swal.fire("Removed!", "", "success");
           e.target.closest(".main__product").remove();
+          document.querySelector(".nav__list--text span").textContent = `(${
+            document.querySelectorAll(".main__product").length
+          } products)`;
           calculatePrices();
         } else if (result.isDenied) {
           Swal.fire("You don't remove it", "", "info");
@@ -179,6 +185,7 @@ document
         color: "#9DE0F6",
       });
     }
+    console.log(document.querySelector(".nav__list--text span").textContent);
   });
 
 document.querySelector(".main__order-btn").addEventListener("click", (e) => {

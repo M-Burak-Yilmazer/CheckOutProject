@@ -1,24 +1,47 @@
+window.addEventListener("load", (event) => {
+  calculatePrices()
+});
+
 document.querySelector(".nav").addEventListener("click", (e) => {
   let count = 1;
   console.log(e.target);
-  //*  delete tuşuna basıldığında ürünleri sıfırlama
   if (
     e.target.className == "nav__list--btn" ||
     e.target.classList.contains("fa-trash-can")
   ) {
-    document.querySelector(".main__product-painel").remove();
-    const par = document.createElement("p");
-    const parText = document.createTextNode("No Products!");
-    par.appendChild(parText);
-    document.querySelector(".main__products-preview").appendChild(par);
-    par.style.backgroundColor = "#FFF";
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.querySelector(".main__product-painel").remove();
+        const par = document.createElement("p");
+        const parText = document.createTextNode("No Products!");
+        par.appendChild(parText);
+        document.querySelector(".main__products-preview").appendChild(par);
+        par.style.backgroundColor = "#FFF";
 
-    //!selected products
-    document.querySelector(".main__sum-price").textContent = "0.00 $";
-    document
-      .querySelectorAll(".main__summary--info .dollar")
-      .forEach((item) => (item.textContent = "0.00$"));
+        //!selected products
+        document.querySelector(".main__sum-price").textContent = "0.00 $";
+        document
+          .querySelectorAll(".main__summary--info .dollar")
+          .forEach((item) => (item.textContent = "0.00$"));
+
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
   }
+
+  //*  delete tuşuna basıldığında ürünleri sıfırlama
 });
 
 let calculatePrices = () => {
@@ -34,16 +57,19 @@ let calculatePrices = () => {
   console.log(taxPrice);
 
   const shippingPrice = sumPrice.textContent > 3000 ? "0.00" : "25.99";
-  document.querySelector("div#cart-shipping .dollar").textContent = shippingPrice;
+  document.querySelector("div#cart-shipping .dollar").textContent =
+    shippingPrice;
 
-  const totalPrice= (+(sumPrice.textContent) +  +(taxPrice)+ +(shippingPrice)).toFixed(2)
-  document.querySelector("div#cart-total .dollar").textContent = totalPrice
-  console.log(totalPrice)
+  const totalPrice = (
+    +sumPrice.textContent +
+    +taxPrice +
+    +shippingPrice
+  ).toFixed(2);
+  document.querySelector("div#cart-total .dollar").textContent = totalPrice;
+  console.log(totalPrice);
 
   return sumPrice.textContent;
 };
-console.log(document.querySelector("div#cart-tax .dollar").textContent);
-calculatePrices()
 
 //todo:   MAIN PART
 
@@ -62,7 +88,7 @@ document
       ).toFixed(2);
       calculatePrices();
     } else if (e.target.classList.contains("fa-minus")) {
-      if (e.target.nextElementSibling.textContent >= 1) {
+      if (e.target.nextElementSibling.textContent > 1) {
         e.target.nextElementSibling.textContent--;
         e.target.parentNode.parentNode.parentNode.lastElementChild.textContent =
           (
@@ -73,29 +99,84 @@ document
           ).toFixed(2);
         calculatePrices();
       }
-      if (e.target.nextElementSibling.textContent < 1) {
-        let result = confirm(
-          `${
+      if (e.target.nextElementSibling.textContent == 1) {
+        Swal.fire({
+          title: `${
             e.target
               .closest(".main__product-info")
               .querySelector(".main__product-info--title").textContent
-          } will be removed!`
-        );
-        result
-          ? e.target.closest(".main__product").remove()
-          : (e.target.nextElementSibling.textContent = 1);
+          } will be removed!`,
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: "Delete It",
+          denyButtonText: `Oh, Don't Delete It`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            e.target.closest(".main__product").remove();
+            calculatePrices();
+
+            Swal.fire("Removed!", "", "success");
+          } else if (result.isDenied) {
+            e.target.nextElementSibling.textContent = 1;
+            calculatePrices();
+
+            Swal.fire("You don't remove it", "", "info");
+          }
+        });
+        calculatePrices();
+
+        // let result = confirm(
+        //   `${
+        //     e.target
+        //       .closest(".main__product-info")
+        //       .querySelector(".main__product-info--title").textContent
+        //   } will be removed!`
+        // );
+        // result
+        //   ? e.target.closest(".main__product").remove()
+        //   : (e.target.nextElementSibling.textContent = 1);
       }
     }
     //* silme tuşuna basıldığında
     else if (e.target.classList.contains("fa-trash-can")) {
-      let result = confirm(
-        `${
+      Swal.fire({
+        title: `${
           e.target
             .closest(".main__product-info")
             .querySelector(".main__product-info--title").textContent
-        } will be removed!`
-      );
-      result ? e.target.closest(".main__product").remove() : null;
-      calculatePrices();
+        } will be removed!`,
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Delete It",
+        denyButtonText: `Oh, Don't Delete It`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire("Removed!", "", "success");
+          e.target.closest(".main__product").remove();
+          calculatePrices();
+        } else if (result.isDenied) {
+          Swal.fire("You don't remove it", "", "info");
+        }
+      });
+      //   confirm(
+      //     `${
+      //       e.target
+      //         .closest(".main__product-info")
+      //         .querySelector(".main__product-info--title").textContent
+      //     } will be removed!`
+      //   );
+
+      //   result ? e.target.closest(".main__product").remove() : null;
     }
   });
+
+document.querySelector(".main__order-btn").addEventListener("click", (e) => {
+  Swal.fire({
+    title: "Congratulations!",
+    text: "You Finished Your Order With Selected Products!",
+    icon: "success",
+    color:"#fff"
+  });
+});
